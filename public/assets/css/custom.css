@@ -1,0 +1,8 @@
+/*
+Custom Css
+*/
+
+.header-img {
+    aspect-ratio: 3/3;
+    object-fit: contain;
+}
