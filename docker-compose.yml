@@ -12,8 +12,12 @@ services:
         container_name: dapurkenyang-app
         restart: unless-stopped
         working_dir: /var/www/
+        depends_on:
+            - db
         volumes:
             - ./:/var/www
+#        ports:
+#            - 3000:3000
         networks:
             - dapurkenyang
 
@@ -31,7 +35,7 @@ services:
         volumes:
             - ./docker-compose/mysql:/docker-entrypoint-initdb.d
         ports:
-            - "3306:3306"
+            - 3306:3306
         networks:
             - dapurkenyang
 
@@ -48,6 +52,8 @@ services:
         image: nginx:alpine
         container_name: dapurkenyang-nginx
         restart: unless-stopped
+        depends_on:
+            - app
         ports:
             - 8000:80
         volumes:
