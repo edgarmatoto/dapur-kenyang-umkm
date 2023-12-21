@@ -10,7 +10,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet">
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	
+
 	<link rel="stylesheet" href="loginuser/css/login.css">
 
 	</head>
@@ -23,7 +23,7 @@
 						<div class="text-wrap p-4 p-lg-5 text-center d-flex align-items-center order-md-last">
 							<div class="text w-100">
 								<h2>Silahkan Buat Akun Kamu:)</h2>
-                                <a href="/" class="btn btn-white btn-outline-white">Login</a>
+                                <a href="/login-user" class="btn btn-white btn-outline-white">Login</a>
 							</div>
 			</div>
 				<div class="login-wrap p-4 p-lg-5">

@@ -16,8 +16,6 @@ services:
             - db
         volumes:
             - ./:/var/www
-#        ports:
-#            - 3000:3000
         networks:
             - dapurkenyang
 
@@ -26,27 +24,16 @@ services:
         container_name: dapurkenyang-db
         restart: unless-stopped
         environment:
-            MYSQL_DATABASE: ${DB_DATABASE}
-            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
-            MYSQL_PASSWORD: ${DB_PASSWORD}
-            MYSQL_USER: ${DB_USERNAME}
+            MYSQL_DATABASE: dapur_kenyang
+            MYSQL_ROOT_PASSWORD: dapurkenyang
+            MYSQL_PASSWORD: dapurkenyang
+            MYSQL_USER: dapurkenyang
             SERVICE_TAGS: dev
             SERVICE_NAME: mysql
         volumes:
             - ./docker-compose/mysql:/docker-entrypoint-initdb.d
-        ports:
-            - 3306:3306
         networks:
             - dapurkenyang
-
-#    frontend:
-#        build: ./resources/js
-#        volumes:
-#            - ./resources/js:/app/resources/js
-#        ports:
-#            - "3000:3000"
-#        depends_on:
-#            - backend
 
     nginx:
         image: nginx:alpine
@@ -55,15 +42,27 @@ services:
         depends_on:
             - app
         ports:
-            - 8000:80
+            - 4000:80
         volumes:
             - ./:/var/www
             - ./docker-compose/nginx:/etc/nginx/conf.d/
         networks:
             - dapurkenyang
 
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin:latest
+        container_name: dapurkenyang-phpmyadmin
+        ports:
+            - "4001:80"
+        environment:
+            - PMA_HOST=db
+        depends_on:
+            - db
+        networks:
+            - dapurkenyang
+
 volumes:
-    mysql-data: # Persist your database data
+    mysql-data:
 
 networks:
     dapurkenyang:

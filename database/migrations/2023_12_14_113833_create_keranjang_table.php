@@ -20,7 +20,7 @@ return new class extends Migration
             $table->foreign('id_produk')->references('id_produk')->on('produk')->cascadeOnUpdate();
 
             $table->unsignedInteger('id_user');
-            $table->foreign('id_user')->references('id')->on('users')->cascadeOnUpdate();
+            $table->foreign('id_user')->references('id_user')->on('user_login')->cascadeOnUpdate();
 
             $table->integer('jumlah');
             $table->timestamps();

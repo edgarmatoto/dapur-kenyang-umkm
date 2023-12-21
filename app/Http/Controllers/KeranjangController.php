@@ -17,7 +17,7 @@ class KeranjangController extends Controller
         $request->validate([
             "id_produk" => "required|integer|exists:produk",
             "jumlah" => "required|integer",
-            'id_user' => 'required|integer|exists:users,id',
+            'id_user' => 'required|integer|exists:user_login,id_user',
         ]);
 
         // Ambil data yang dikirim dari sisi klien

@@ -30,9 +30,6 @@ RUN mkdir -p /home/$user/.composer && \
 
 WORKDIR /var/www
 
-# test
-#COPY . /var/www
-#EXPOSE 3000
-#CMD ["php", "artisan", "serve"]
-
 USER $user
+
+CMD [ "php-fpm" ]

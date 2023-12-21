@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 18, 2023 at 05:32 AM
+-- Generation Time: Dec 21, 2023 at 08:21 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -81,7 +81,7 @@ CREATE TABLE `keranjang` (
 --
 
 INSERT INTO `keranjang` (`id`, `id_produk`, `id_user`, `jumlah`, `created_at`, `updated_at`) VALUES
-(22, 1, 1, 2, '2023-12-16 12:00:20', '2023-12-16 12:06:09');
+(27, 1, 1, 4, '2023-12-19 17:55:31', '2023-12-19 17:55:31');
 
 -- --------------------------------------------------------
 
@@ -295,7 +295,14 @@ INSERT INTO `transaksi` (`id`, `id_user`, `total`, `created_at`, `updated_at`) V
 (6, 1, 20000, '2023-12-16 10:21:06', '2023-12-16 10:21:06'),
 (7, 1, 12000, '2023-12-16 11:17:28', '2023-12-16 11:17:28'),
 (8, 1, 20000, '2023-12-16 11:20:56', '2023-12-16 11:20:56'),
-(9, 1, 8000, '2023-12-16 12:00:09', '2023-12-16 12:00:09');
+(9, 1, 8000, '2023-12-16 12:00:09', '2023-12-16 12:00:09'),
+(10, 1, 8000, '2023-12-19 16:57:07', '2023-12-19 16:57:07'),
+(11, 1, 0, '2023-12-19 16:57:14', '2023-12-19 16:57:14'),
+(12, 1, 0, '2023-12-19 16:57:18', '2023-12-19 16:57:18'),
+(13, 1, 0, '2023-12-19 16:57:18', '2023-12-19 16:57:18'),
+(14, 1, 48000, '2023-12-19 17:28:37', '2023-12-19 17:28:37'),
+(15, 1, 6000, '2023-12-19 17:30:05', '2023-12-19 17:30:05'),
+(16, 1, 16000, '2023-12-19 17:32:16', '2023-12-19 17:32:16');
 
 -- --------------------------------------------------------
 
@@ -326,7 +333,12 @@ INSERT INTO `transaksi_detail` (`id`, `id_transaksi`, `id_produk`, `jumlah`, `cr
 (15, 8, 2, 5, '2023-12-16 11:20:56', '2023-12-16 11:20:56'),
 (16, 8, 8, 2, '2023-12-16 11:20:56', '2023-12-16 11:20:56'),
 (17, 8, 3, 3, '2023-12-16 11:20:56', '2023-12-16 11:20:56'),
-(18, 9, 1, 4, '2023-12-16 12:00:09', '2023-12-16 12:00:09');
+(18, 9, 1, 4, '2023-12-16 12:00:09', '2023-12-16 12:00:09'),
+(19, 10, 1, 3, '2023-12-19 16:57:07', '2023-12-19 16:57:07'),
+(20, 10, 14, 1, '2023-12-19 16:57:07', '2023-12-19 16:57:07'),
+(21, 14, 2, 24, '2023-12-19 17:28:37', '2023-12-19 17:28:37'),
+(22, 15, 2, 3, '2023-12-19 17:30:05', '2023-12-19 17:30:05'),
+(23, 16, 2, 8, '2023-12-19 17:32:16', '2023-12-19 17:32:16');
 
 -- --------------------------------------------------------
 
@@ -377,7 +389,8 @@ CREATE TABLE `user_login` (
 --
 
 INSERT INTO `user_login` (`id_user`, `nama`, `email`, `password`, `confir`, `created_at`, `updated_at`) VALUES
-(1, 'juni', 'juni@example.com', '$2y$10$YBEhpoqa4i2rmFvYC8hlTu/Isf.eJ0jONXGu1n81Q9GQ74sGDyhTi', '$2y$10$YlioFY8fEmK6FN8gtqShFuxDMQpsSmgJEsaHNBjRV66uvLFizFehm', NULL, NULL);
+(1, 'juni', 'juni@example.com', '$2y$10$YBEhpoqa4i2rmFvYC8hlTu/Isf.eJ0jONXGu1n81Q9GQ74sGDyhTi', '$2y$10$YlioFY8fEmK6FN8gtqShFuxDMQpsSmgJEsaHNBjRV66uvLFizFehm', NULL, NULL),
+(2, 'edgar', 'edgar@example.com', '$2y$10$hmkxfj52SqL8YE7eXzjZhOoGVraFDMBB72KTJZhgOijUebt/q7i0W', '$2y$10$IXvw3bPGk4KwZgh.jubrSOOxp/wPOH.F5hxv4Ao2NtDSaFUCgHtBu', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -507,7 +520,7 @@ ALTER TABLE `header_website`
 -- AUTO_INCREMENT for table `keranjang`
 --
 ALTER TABLE `keranjang`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `kontak`
@@ -555,13 +568,13 @@ ALTER TABLE `testimoni`
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `transaksi_detail`
 --
 ALTER TABLE `transaksi_detail`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -573,7 +586,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `user_login`
 --
 ALTER TABLE `user_login`
-  MODIFY `id_user` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_user` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
@@ -591,7 +604,7 @@ ALTER TABLE `header_website`
 --
 ALTER TABLE `keranjang`
   ADD CONSTRAINT `keranjang_id_produk_foreign` FOREIGN KEY (`id_produk`) REFERENCES `produk` (`id_produk`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `keranjang_id_user_foreign` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `keranjang_id_user_foreign` FOREIGN KEY (`id_user`) REFERENCES `user_login` (`id_user`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 --
 -- Constraints for table `kontak`
@@ -621,7 +634,7 @@ ALTER TABLE `testimoni`
 -- Constraints for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  ADD CONSTRAINT `transaksi_id_user_foreign` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `transaksi_id_user_foreign` FOREIGN KEY (`id_user`) REFERENCES `user_login` (`id_user`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 --
 -- Constraints for table `transaksi_detail`

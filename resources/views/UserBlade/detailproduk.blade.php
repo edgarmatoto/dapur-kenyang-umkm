@@ -94,9 +94,7 @@
                                                 var idUser = document.getElementById("idUser").value;
                                                 var idProduk = document.getElementById("idProduk").value;
 
-                                                addToCart(idUser, idProduk, jumlah)
-
-
+                                                addToCart(idUser, idProduk, jumlah);
                                             }
 
                                             function addToCart(idUser, idProduk, jumlah) {
