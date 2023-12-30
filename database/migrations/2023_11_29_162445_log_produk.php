@@ -19,7 +19,7 @@ return new class extends Migration
 
             // foreign key column
             $table->unsignedBigInteger('id_produk');
-            $table->foreign('id_produk')->references('id_produk')->on('produk')->cascadeOnUpdate();
+            $table->foreign('id_produk')->references('id_produk')->on('produk')->cascadeOnUpdate()->cascadeOnDelete();
 
             $table->integer("harga_produk");
             $table->integer("stok_produk")->nullable();

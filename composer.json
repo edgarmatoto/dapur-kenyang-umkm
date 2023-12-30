@@ -16,6 +16,7 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "league/glide-laravel": "^1.0",
+        "predis/predis": "^2.2",
         "realrashid/sweet-alert": "^7.1"
     },
     "require-dev": {

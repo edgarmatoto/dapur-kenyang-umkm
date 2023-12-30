@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Kontak;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
@@ -150,6 +151,8 @@ class KontakController extends Controller
                 'tiktok' => $request->tiktok
             ]);
         }
+
+        Cache::store("redis")->delete("kontak");
 
         return Redirect::back()->with(
             'success', 'Kontak updated.'

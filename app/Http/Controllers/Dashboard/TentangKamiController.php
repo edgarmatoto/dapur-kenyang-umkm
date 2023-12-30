@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\TentangKami;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
@@ -66,6 +67,8 @@ class TentangKamiController extends Controller
             'deskripsi' => $request->deskripsi
         ]);
 
+        Cache::store("redis")->delete("tentangKami");
+
         return Redirect::route('tentang-kami.index')->with('success', 'Tentang kami created.');
     }
 
@@ -117,6 +120,8 @@ class TentangKamiController extends Controller
             ]);
         }
 
+        Cache::store("redis")->delete("tentangKami");
+
         return Redirect::back()->with(
             'success', 'Tentang kami updated.'
         );
@@ -134,6 +139,8 @@ class TentangKamiController extends Controller
         Storage::delete($tentangKami->foto);
 
         $tentangKami->delete();
+
+        Cache::store("redis")->delete("tentangKami");
 
         return Redirect::route('tentang-kami.index')->with('success', 'Tentang kami deleted.');
     }

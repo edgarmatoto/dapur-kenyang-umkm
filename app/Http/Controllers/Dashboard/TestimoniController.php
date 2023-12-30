@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Testimoni;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
@@ -71,6 +72,8 @@ class TestimoniController extends Controller
             'deskripsi' => $request->deskripsi
         ]);
 
+        Cache::store("redis")->delete("testimoni");
+
         return Redirect::route('testimoni.index')->with('success', 'Testimoni created.');
     }
 
@@ -124,6 +127,8 @@ class TestimoniController extends Controller
             ]);
         }
 
+        Cache::store("redis")->delete("testimoni");
+
         return Redirect::back()->with(
             'success', 'Testimoni updated.'
         );
@@ -141,6 +146,8 @@ class TestimoniController extends Controller
         Storage::delete($testimoni->foto);
 
         $testimoni->delete();
+
+        Cache::store("redis")->delete("testimoni");
 
         return Redirect::route('testimoni.index')->with('success', 'Testimoni deleted.');
     }

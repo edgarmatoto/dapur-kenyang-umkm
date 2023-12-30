@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
 
             $table->unsignedInteger('id_user');
-            $table->foreign('id_user')->references('id_user')->on('user_login')->cascadeOnUpdate();
+            $table->foreign('id_user')->references('id_user')->on('user_login')->cascadeOnUpdate()->cascadeOnDelete();
 
             $table->integer('total');
 

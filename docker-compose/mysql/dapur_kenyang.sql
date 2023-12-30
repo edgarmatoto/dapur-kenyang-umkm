@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 21, 2023 at 08:21 AM
+-- Generation Time: Dec 27, 2023 at 09:56 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -81,7 +81,9 @@ CREATE TABLE `keranjang` (
 --
 
 INSERT INTO `keranjang` (`id`, `id_produk`, `id_user`, `jumlah`, `created_at`, `updated_at`) VALUES
-(27, 1, 1, 4, '2023-12-19 17:55:31', '2023-12-19 17:55:31');
+(27, 1, 1, 4, '2023-12-19 17:55:31', '2023-12-19 17:55:31'),
+(39, 1, 2, 11, '2023-12-21 00:22:10', '2023-12-21 01:17:45'),
+(40, 14, 2, 1, '2023-12-21 00:22:26', '2023-12-21 00:22:26');
 
 -- --------------------------------------------------------
 
@@ -108,7 +110,7 @@ CREATE TABLE `kontak` (
 --
 
 INSERT INTO `kontak` (`id`, `nomor_telepon`, `instagram`, `facebook`, `tiktok`, `id_user`, `created_at`, `updated_at`, `email`, `alamat`, `alamat_jalan`) VALUES
-(1, '+6288258192639', 'https://instagram.com/dapur_kenyangg?igshid=OGQ5ZDc2ODk2ZA==', 'https://facebook.com/', '-', 1, NULL, '2023-12-16 08:39:43', 'juwitanurasriani@gmail.com', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3973.640441841479!2d119.41173783148402!3d-5.161414194815924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dbee3a82ab664c3%3A0xb7b88d8a461c08a6!2sDapur%20Kenyang!5e0!3m2!1sid!2sid!4v1700711812773!5m2!1sid!2sid', 'Jl. Cendrawasih Asmat Barak V No.6, Mario, Kec. Mariso, Kota Makassar, Sulawesi Selatan 90131');
+(1, '+6288258192639', 'https://instagram.com/dapur_kenyangg?igshid=OGQ5ZDc2ODk2ZA==', 'https://facebook.com/', '-', 1, NULL, '2023-12-27 00:08:27', 'dapurkenyang5@gmail.com', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3973.640441841479!2d119.41173783148402!3d-5.161414194815924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dbee3a82ab664c3%3A0xb7b88d8a461c08a6!2sDapur%20Kenyang!5e0!3m2!1sid!2sid!4v1700711812773!5m2!1sid!2sid', 'Jl. Cendrawasih Asmat Barak V No.6, Mario, Kec. Mariso, Kota Makassar, Sulawesi Selatan 90131');
 
 -- --------------------------------------------------------
 
@@ -365,7 +367,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `email_verified_at`, `password`, `owner`, `photo_path`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'John', 'Doe', 'johndoe@example.com', '2023-11-30 05:38:28', '$2y$10$A4KptxLP09BJw8flRL6Dl.NNRAYz0JBY..fRl307Fe5Tl7n8HxsZe', 1, NULL, '6fkXD6KAuZivmzrW6uVXy2zUi0CaXeURUFqB7Y0l4r997vFUVAjan29gVv6d', '2023-11-30 05:38:28', '2023-12-05 22:44:41'),
+(1, 'Dapur', 'Kenyang', 'dapurkenyang5@gmail.com', '2023-11-30 05:38:28', '$2y$10$NRVLn7IVVwEJ37lSwMC2h.U8bEuZYv/OB7MYcnj1pL6snuv4IpgKu', 1, NULL, '6fkXD6KAuZivmzrW6uVXy2zUi0CaXeURUFqB7Y0l4r997vFUVAjan29gVv6d', '2023-11-30 05:38:28', '2023-12-27 00:09:03'),
 (9, 'Gordon', 'Ramsay', 'gordonramsay@example.com', '2023-12-05 22:50:44', '$2y$10$T03tr0ejBQ1Scz9Y7ImX9.Ea//Lw2O6vxUytKJTN11G3yhzvSUbYe', 0, NULL, NULL, '2023-12-05 22:50:45', '2023-12-05 22:50:45');
 
 -- --------------------------------------------------------
@@ -485,7 +487,8 @@ ALTER TABLE `transaksi`
 --
 ALTER TABLE `transaksi_detail`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `transaksi_detail_id_produk_foreign` (`id_produk`);
+  ADD KEY `transaksi_detail_id_produk_foreign` (`id_produk`),
+  ADD KEY `transaksi_detail_id_transaksi_foreign` (`id_transaksi`);
 
 --
 -- Indexes for table `users`
@@ -520,7 +523,7 @@ ALTER TABLE `header_website`
 -- AUTO_INCREMENT for table `keranjang`
 --
 ALTER TABLE `keranjang`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `kontak`
@@ -596,51 +599,52 @@ ALTER TABLE `user_login`
 -- Constraints for table `header_website`
 --
 ALTER TABLE `header_website`
-  ADD CONSTRAINT `header_website_id_produk_foreign` FOREIGN KEY (`id_produk`) REFERENCES `produk` (`id_produk`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `header_website_id_user_foreign` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `header_website_id_produk_foreign` FOREIGN KEY (`id_produk`) REFERENCES `produk` (`id_produk`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `header_website_id_user_foreign` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `keranjang`
 --
 ALTER TABLE `keranjang`
-  ADD CONSTRAINT `keranjang_id_produk_foreign` FOREIGN KEY (`id_produk`) REFERENCES `produk` (`id_produk`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `keranjang_id_user_foreign` FOREIGN KEY (`id_user`) REFERENCES `user_login` (`id_user`) ON DELETE RESTRICT ON UPDATE CASCADE;
+  ADD CONSTRAINT `keranjang_id_produk_foreign` FOREIGN KEY (`id_produk`) REFERENCES `produk` (`id_produk`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `keranjang_id_user_foreign` FOREIGN KEY (`id_user`) REFERENCES `user_login` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `kontak`
 --
 ALTER TABLE `kontak`
-  ADD CONSTRAINT `kontak_id_user_foreign` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `kontak_id_user_foreign` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `log_produk`
 --
 ALTER TABLE `log_produk`
-  ADD CONSTRAINT `log_produk_id_produk_foreign` FOREIGN KEY (`id_produk`) REFERENCES `produk` (`id_produk`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `log_produk_id_produk_foreign` FOREIGN KEY (`id_produk`) REFERENCES `produk` (`id_produk`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tentang_kami`
 --
 ALTER TABLE `tentang_kami`
-  ADD CONSTRAINT `tentang_kami_id_user_foreign` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `tentang_kami_id_user_foreign` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `testimoni`
 --
 ALTER TABLE `testimoni`
-  ADD CONSTRAINT `testimoni_id_user_foreign` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `testimoni_id_user_foreign` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  ADD CONSTRAINT `transaksi_id_user_foreign` FOREIGN KEY (`id_user`) REFERENCES `user_login` (`id_user`) ON DELETE RESTRICT ON UPDATE CASCADE;
+  ADD CONSTRAINT `transaksi_id_user_foreign` FOREIGN KEY (`id_user`) REFERENCES `user_login` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `transaksi_detail`
 --
 ALTER TABLE `transaksi_detail`
-  ADD CONSTRAINT `transaksi_detail_id_produk_foreign` FOREIGN KEY (`id_produk`) REFERENCES `produk` (`id_produk`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `transaksi_detail_id_produk_foreign` FOREIGN KEY (`id_produk`) REFERENCES `produk` (`id_produk`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `transaksi_detail_id_transaksi_foreign` FOREIGN KEY (`id_transaksi`) REFERENCES `transaksi` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

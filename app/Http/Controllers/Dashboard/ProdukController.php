@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Produk;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
@@ -70,6 +71,8 @@ class ProdukController extends Controller
             'stok_produk' => $request->stok_produk,
             'deskripsi_produk' => $request->deskripsi_produk
         ]);
+
+        Cache::store("redis")->delete("produk");
 
         return Redirect::route('produk.index')->with('success', 'Produk created.');
     }
@@ -137,6 +140,8 @@ class ProdukController extends Controller
             ]);
         }
 
+        Cache::store("redis")->delete("produk");
+
         return Redirect::back()->with(
             'success', 'Produk updated.'
         );
@@ -155,6 +160,8 @@ class ProdukController extends Controller
 
 //        delete produk
         $produk->delete();
+
+        Cache::store("redis")->delete("produk");
 
         return Redirect::route('produk.index')->with('success', 'Produk deleted.');
     }

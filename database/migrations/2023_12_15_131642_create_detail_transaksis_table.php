@@ -17,10 +17,10 @@ return new class extends Migration
             $table->id();
 
             $table->unsignedBigInteger('id_transaksi');
-            $table->foreign('id_transaksi')->references('id')->on('transaksi')->cascadeOnUpdate();
+            $table->foreign('id_transaksi')->references('id')->on('transaksi')->cascadeOnUpdate()->cascadeOnDelete();
 
             $table->unsignedBigInteger('id_produk');
-            $table->foreign('id_produk')->references('id_produk')->on('produk')->cascadeOnUpdate();
+            $table->foreign('id_produk')->references('id_produk')->on('produk')->cascadeOnUpdate()->cascadeOnDelete();
 
             $table->integer('jumlah');
 

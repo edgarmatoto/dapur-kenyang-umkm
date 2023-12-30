@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\HeaderWebsite;
 use App\Models\Produk;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\URL;
 use Inertia\Inertia;
@@ -68,6 +69,8 @@ class HeaderWebsiteController extends Controller
             'id_user' => $request->id_user
         ]);
 
+        Cache::store("redis")->delete("headerWebsite");
+
         return Redirect::route('header-website.index')->with('success', 'Header website created.');
     }
 
@@ -109,6 +112,8 @@ class HeaderWebsiteController extends Controller
 
         $headerWebsite->update($validated);
 
+        Cache::store("redis")->delete("headerWebsite");
+
         return Redirect::back()->with(
             'success', 'Header website updated.'
         );
@@ -124,6 +129,8 @@ class HeaderWebsiteController extends Controller
     {
 //        delete produk
         $headerWebsite->delete();
+
+        Cache::store("redis")->delete("headerWebsite");
 
         return Redirect::route('header-website.index')->with('success', 'Header website deleted.');
     }

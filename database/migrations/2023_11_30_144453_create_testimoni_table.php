@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string("foto", 255);
 
             $table->unsignedInteger('id_user');
-            $table->foreign('id_user')->references('id')->on('users')->cascadeOnUpdate();
+            $table->foreign('id_user')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
 
             $table->timestamps();
         });

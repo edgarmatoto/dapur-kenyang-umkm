@@ -17,13 +17,13 @@ return new class extends Migration
             $table->id();
 
             $table->unsignedBigInteger('id_produk');
-            $table->foreign('id_produk')->references('id_produk')->on('produk')->cascadeOnUpdate();
+            $table->foreign('id_produk')->references('id_produk')->on('produk')->cascadeOnUpdate()->cascadeOnDelete();
 
             $table->text("slogan");
             $table->text("deskripsi");
 
             $table->unsignedInteger('id_user');
-            $table->foreign('id_user')->references('id')->on('users')->cascadeOnUpdate();
+            $table->foreign('id_user')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }
