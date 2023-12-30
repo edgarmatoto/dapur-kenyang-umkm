@@ -22,5 +22,10 @@ RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www
+COPY . .
+RUN php artisan view:clear
+
+RUN sudo chown -R www-data:www-data /var/www/storage/framework
+RUN sudo chmod -R 775 /var/www/storage/framework
 
 CMD [ "php-fpm" ]

@@ -8,11 +8,8 @@ services:
         image: dapurkenyang-image
         container_name: dapurkenyang-app
         restart: unless-stopped
-        volumes:
-            - ./:/var/www
         depends_on:
             - db
-        user: "1000:1000"
         networks:
             - dapurkenyang
         deploy:
@@ -39,6 +36,21 @@ services:
             resources:
                 limits:
                     memory: 2G
+
+    redis:
+        image: 'redis:alpine'
+        container_name: dapurkenyang-redis
+        restart: unless-stopped
+        ports:
+            - '6379:6379'
+        volumes:
+            - "./data/redis:/data"
+        networks:
+            - dapurkenyang
+        deploy:
+            resources:
+                limits:
+                    memory: 512M
 
     nginx:
         image: nginx:alpine
