@@ -40,21 +40,6 @@ services:
                 limits:
                     memory: 2G
 
-    redis:
-        image: 'redis:alpine'
-        container_name: dapurkenyang-redis
-        restart: unless-stopped
-        ports:
-            - '6379:6379'
-        volumes:
-            - "./data/redis:/data"
-        networks:
-            - dapurkenyang
-        deploy:
-            resources:
-                limits:
-                    memory: 512M
-
     nginx:
         image: nginx:alpine
         container_name: dapurkenyang-nginx
